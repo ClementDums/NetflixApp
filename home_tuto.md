@@ -292,9 +292,54 @@ suspend fun getCategories(): Result<List<Category>> {
 
 Dans le package home, ajoutez une classe `CategoryAdapter`
 
+```kotlin
+class CategoryAdapter(private val items: List<Category>) :
+    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
+    inner class ViewHolder(private val binding: CategoryListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Category) {
+            binding.item = item
+        }
+    }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return ViewHolder(CategoryListItemBinding.inflate(inflater, parent, false))
+    }
 
+    override fun getItemCount(): Int = items.size
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
+}
+```
+
+3.4 Modifiez le fragment de la home pour instancier l'adapteur quand les catégories sont récupérées du serveur 
+
+```kotlin 
+....
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(homeViewModel) {
+            token.observe(viewLifecycleOwner, Observer {
+                //récupérer les catégories
+                getCategories()
+            })
+
+            categories.observe(viewLifecycleOwner, Observer {
+                binding.categoryList.adapter = CategoryAdapter(it)
+            })
+
+            error.observe(viewLifecycleOwner, Observer {
+                //afficher l'erreur
+            })
+        }
+    }
+....
+
+3.5 Exécutez l'application 
 
 
