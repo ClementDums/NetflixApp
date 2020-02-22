@@ -25,7 +25,7 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
 
 2. Afficher les catégories de films. Les étapes sont décrites [ici](https://github.com/eamosse/the-movie-app/blob/master/home_tuto.md)
 
-3. Afficher les films d'une catégorie. 
+3. Afficher les films d'une catégorie. Les consignes sont par [ici](https://github.com/eamosse/the-movie-app/blob/master/movie_list.md)
 
 
 
