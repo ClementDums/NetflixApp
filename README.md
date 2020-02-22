@@ -23,7 +23,7 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
 ## Différentes étapes 
 1. Cloner les sources du projet sur vos machines.  
 
-2. Modifier la page d'accueil de l'application pour afficher les catégories de films.   
+2. Modifier la page d'accueil de l'application pour afficher les catégories de films. Les étapes sont décrites [ici](https://github.com/eamosse/the-movie-app/blob/master/home_tuto.md)
 
 
 
