@@ -8,4 +8,10 @@ Modifier la page d'accueil de l'application afin d'y afficher les catégories de
 - Afficher les catégories sous forme de grid 
 - Utiliser le endpoint /genre/movie/list (cf. https://developers.themoviedb.org/3/genres/get-movie-list)
 
+### Marche à suivre 
+
+#### 1. Mise en place du databinding 
+
+1.1 Activer le databinding dans le module (app)
+
 
