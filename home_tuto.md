@@ -48,9 +48,13 @@ Ouvrir le layout du fragment (home_fragment) puis ajouter la balise <layout> </l
 
 > Le nom de la classe est déterminer par le nom du fichier layout (utilisation du camelCase, les _ sont enlevés). Exemple fragment_home deviendra FragmentHomeBinding. 
 
-Ouvrir le fichier HomeFragment.kt et modifier la méthode onCreateView afin d'utiliser la classe autogénérée par le databinding pour créer la vue de la home. 
+Modifier onCreateView dans HomeFragment.kt afin d'utiliser la classe autogénérée par le databinding pour créer la vue de la home. 
 
 ```kotlin
+...
+private lateinit var binding: FragmentHomeBinding
+...
+
 override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -60,4 +64,5 @@ override fun onCreateView(
         return binding.root
     }
 ```
+ 
 
