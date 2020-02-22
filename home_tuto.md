@@ -12,7 +12,7 @@ Modifier la page d'accueil de l'application afin d'y afficher les catégories de
 
 #### 1. Mise en place du databinding 
 
-1.1 Activer le databinding dans le module (app)
+1.1 Activez le databinding dans le module (app)
 
 ```kotlin
 ...
@@ -30,9 +30,9 @@ android {
 
 ```
 
-1.2 Utiliser le databiding pour gérer la vue de HomeFragment
+1.2 Utilisez le databiding pour gérer la vue de HomeFragment
 
-Ouvrir le layout du fragment (home_fragment) puis ajouter la balise <layout> </layout> à la racine du document. 
+Dans le layout `home_fragment`, ajoutez la balise <layout> </layout> à la racine du document. 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
@@ -42,13 +42,13 @@ Ouvrir le layout du fragment (home_fragment) puis ajouter la balise <layout> </l
 </layout>
 ```
 
-1.3 Utiliser le databinding dans le fragment HomeFragment 
+1.3 Utilisez le databinding dans le fragment HomeFragment 
 
 > Android Studio générera automatiquement une classe dont les attributs sont les objets de vue déclarer dans le fichier; le nom de chaque élément est déterminer par leur id.
 
 > Le nom de la classe est déterminer par le nom du fichier layout (utilisation du camelCase, les _ sont enlevés). Exemple fragment_home deviendra FragmentHomeBinding. 
 
-Modifier onCreateView dans HomeFragment.kt afin d'utiliser la classe autogénérée par le databinding pour créer la vue de la home. 
+Modifiez la méthode onCreateView dans HomeFragment.kt afin d'utiliser la classe autogénérée par le databinding pour créer la vue de la home. 
 
 ```kotlin
 ...
@@ -66,7 +66,7 @@ override fun onCreateView(
 ```
 > Le databinding nous affranchi des tâches répétitives comme findViewById pour récupérer les éléments de vue 
 
-Modifier la méthode onViewCreated...
+Modifiez la méthode onViewCreated...
 ```kotlin
 override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -88,11 +88,11 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     }
 ``` 
 
-1.4 Compiler le projet, s'il n'y a pas d'erreurs vous devriez avoir le même comportement qu'avant. 
+1.4 Compilez le projet, s'il n'y a pas d'erreurs vous devriez avoir le même comportement qu'avant. 
 
-#### 2. Ajouter l'action de l'API et les méthodes necessaires permettant de récuper la liste des catégories de films 
+#### 2. Ajoutez l'action de l'API et les méthodes necessaires permettant de récuper la liste des catégories de films 
 
-* Uri: /genre/movie/list
+* Uri: genre/movie/list
 * Réponse
 ````json
 {
@@ -106,7 +106,7 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 ````
 > Remarquez que l'API retourne un JSON avec un attribut `genres` qui contient le tableau des catégories. 
 
-2.1 Créer les objets du modèle de données permettant de modéliser la réponse de l'API 
+2.1 Créez les objets du modèle de données permettant de modéliser la réponse de l'API 
 
 - Dans le package response, créez une classe CategoryReponse 
 - Dans le fichier de la classe, créez les deux classes permettant de déserialiser la réponse du serveur 
@@ -126,7 +126,7 @@ internal data class CategoryResponse(
 ```
 
 
-2.2. Modifier l'interface du service `MovieService` pour y ajouter une action permettant de lister les catégoris
+2.2. Modifiez l'interface du service `MovieService` pour y ajouter une action permettant de lister les catégoris
 
 ```kotlin
 internal interface MovieService {
@@ -214,7 +214,7 @@ suspend fun getCategories(): Result<List<Category>> {
     }
  ```
 
-#### 3. Afficher les catégories dans le fragment de la home `HomeFragment`
+#### 3. Affichez les catégories dans le fragment de la home `HomeFragment`
 
 3.1 Créez un layout modélisant l'affichage de chaque item catégory de la home (utilisez le databinding) 
 ```xml
@@ -261,7 +261,7 @@ suspend fun getCategories(): Result<List<Category>> {
 </layout>
 ```
 
-3.2. Modifier le layout du fragment `home_fragment` afin d'y ajouter un `RecyclerView`
+3.2. Modifiez le layout du fragment `home_fragment` afin d'y ajouter un `RecyclerView`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
