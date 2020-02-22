@@ -21,9 +21,9 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
 - OkHttp: Client HTTP 
 
 ## Différentes étapes 
-1. L'architecture de base du projet est mis à votre disposition implémentant le pattern MVVM. Récupérer les sources, analysez puis compilez le projet! Certains fichiers contiennent des commentaires qui vous permettront de mieux comprendre leur rôle dans l'architecture du projet.  
+1. Cloner les sources du projet sur vos machines.  
 
-2. Implémenter la fonctionnalité permettant d'afficher les 20 premiers catégories de films (https://developers.themoviedb.org/3/genres/get-movie-list)  
+2. Modifier la page d'accueil de l'application pour afficher les catégories de films.   
 
 
 
