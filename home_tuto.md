@@ -14,4 +14,19 @@ Modifier la page d'accueil de l'application afin d'y afficher les catégories de
 
 1.1 Activer le databinding dans le module (app)
 
+```kotlin
+...
+apply plugin: 'kotlin-kapt'
+...
+
+android {
+    ...
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+```
 
