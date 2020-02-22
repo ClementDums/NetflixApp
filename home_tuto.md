@@ -64,5 +64,26 @@ override fun onCreateView(
         return binding.root
     }
 ```
- 
+> Le databinding nous affranchi des tâches répétitives comme findViewById pour récupérer les éléments de vue 
 
+Modifier la méthode onViewCreated...
+```kotlin
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        homeViewModel.token.observe(viewLifecycleOwner, Observer {
+            binding.textHome.text = "${it.requestToken} - ${it.expiresAt}"
+        })
+
+        homeViewModel.error.observe(viewLifecycleOwner, Observer {
+            binding.textHome.text = "Erreur $it"
+        })
+
+        binding.buttonHome.setOnClickListener {
+            val action = HomeFragmentDirections
+                    .actionHomeFragmentToHomeSecondFragment("From HomeFragment")
+            NavHostFragment.findNavController(this@HomeFragment)
+                    .navigate(action)
+        }
+    }
+``` 
