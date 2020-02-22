@@ -214,6 +214,86 @@ suspend fun getCategories(): Result<List<Category>> {
     }
  ```
 
+#### 3. Afficher les catégories dans le fragment de la home `HomeFragment`
+
+3.1 Créez un layout modélisant l'affichage de chaque item catégory de la home (utilisez le databinding) 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.gmail.eamosse.idbdata.data.Category" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/category_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/category_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:text="@{item.name}"
+            app:layout_constraintBottom_toBottomOf="@id/category_img"
+            app:layout_constraintEnd_toEndOf="@id/category_img"
+            app:layout_constraintStart_toStartOf="@id/category_img"
+            app:layout_constraintTop_toTopOf="@id/category_img"
+            tools:text="Actions et Aventures" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+```
+
+3.2. Modifier le layout du fragment `home_fragment` afin d'y ajouter un `RecyclerView`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:spanCount="4"
+            tools:listitem="@layout/category_list_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+```
+3.3. Créez un adapter pour afficher les catégories dans le recycler view 
+
+Dans le package home, ajoutez une classe `CategoryAdapter`
+
+
+
 
 
 
