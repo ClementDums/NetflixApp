@@ -339,7 +339,101 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         }
     }
 ....
+```
 
 3.5 Exécutez l'application 
+
+### 4. Utilisation des extensions pour éviter de dupliquer du code  
+
+Les instructions des deux méthodes du repository sont quasi similaires, on va utiliser les fonctions d'extensions et les inline function pour éviter la redondance de codes. 
+
+#### 4.1 Utilisez une fonction d'extension pour traiter la réponse de l'API 
+Créez une fonction d'expension sur la classe Reponse puis déplacez le code qui traite le statut de la réponse dans cette fonction. 
+
+```kotlin
+import retrofit2.Response
+
+internal fun <T : Any> Response<T>.parse(): Result<T> {
+    return if (isSuccessful) {
+        body()?.let {
+            Result.Succes(it)
+        } ?: run {
+            Result.Error(
+                exception = NoDataException(),
+                message = "Aucune donnée",
+                code = 404
+            )
+        }
+    } else {
+        Result.Error(
+            exception = Exception(),
+            message = message(),
+            code = code()
+        )
+    }
+}
+
+class NoDataException: Exception()
+```
+
+Modifier les méthodes du repository pour utiliser la fonction d'extension 
+
+```kotlin 
+suspend fun getToken(): Result<TokenResponse> {
+        return try {
+            val response = service.getToken()
+            response.parse()
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+```
+
+#### 4.2 Utilisez les fonctions les inlines fonctions pour exécuter les actions de l'API 
+Tous les appels au fonctions de l'API sont encapsulés dans un bloc try/catch, ceci permet de traiter les exceptions IO (ex accès au réseau). Ces appels peuvent être simplifiés en utilisant un les inline fonctions. L'objectif est de créer une fonction qui encapsule le bloc try catch et délègue l'exécuton de l'action à la fonction appelante.
+
+Dans le fichier `Extensions.kt`, ajoutez la fonction safeCall
+
+``` kotlin 
+internal suspend fun <T : Any> safeCall(execute: suspend () -> Result<T>): Result<T> {
+    return try {
+        execute()
+    } catch (e: Exception) {
+        if (e is IOException) {
+            Result.Error(
+                exception = NetworkException(),
+                message = "Problème d'accès au réseau",
+                code = -1
+            )
+        } else {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+}
+
+```
+
+Modifiez les fonctions du Repository afin d'utiliser la fonction safeCall
+
+```kotlin
+suspend fun getToken(): Result<TokenResponse> {
+        return safeCall {
+            val response = service.getToken()
+            response.parse()
+        }
+    }
+```
+
+
+### 5. Gestion des erreurs 
+
 
 
