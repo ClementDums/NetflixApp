@@ -1,7 +1,12 @@
 package com.gmail.eamosse.idbdata.repository
 
 import com.gmail.eamosse.idbdata.api.response.toEntity
+import com.gmail.eamosse.idbdata.api.response.toPerson
 import com.gmail.eamosse.idbdata.api.response.toToken
+import com.gmail.eamosse.idbdata.api.response.toTrending
+import com.gmail.eamosse.idbdata.data.Category
+import com.gmail.eamosse.idbdata.data.Movie
+import com.gmail.eamosse.idbdata.data.Person
 import com.gmail.eamosse.idbdata.data.Token
 import com.gmail.eamosse.idbdata.datasources.LocalDataSource
 import com.gmail.eamosse.idbdata.datasources.OnlineDataSource
@@ -29,6 +34,68 @@ class MovieRepository : KoinComponent {
                 local.saveToken(result.data.toEntity())
                 //return the response
                 Result.Succes(result.data.toToken())
+            }
+            is Result.Error -> result
+
+        }
+    }
+
+    suspend fun getCategories(): Result<List<Category>> {
+
+        return when(val result = online.getCategories()) {
+            is Result.Succes -> {
+                // On utilise la fonction map pour convertir les catégories de la réponse serveur
+                // en liste de categories d'objets de l'application
+                val categories = result.data.map {
+                    it.toCategory()
+                }
+                Result.Succes(categories)
+            }
+            is Result.Error -> result
+        }
+    }
+
+    suspend fun getMovie(genre_id:Int): Result<List<Movie>> {
+
+        return when(val result = online.getMovie(genre_id)) {
+            is Result.Succes -> {
+                // On utilise la fonction map pour convertir les catégories de la réponse serveur
+                // en liste de categories d'objets de l'application
+                val movies = result.data.map {
+                    println(it)
+                    it.toMovie()
+                }
+                Result.Succes(movies)
+            }
+            is Result.Error -> result
+        }
+    }
+
+    suspend fun getTrendingMovies(): Result<List<Movie>> {
+
+        return when(val result = online.getTrendingMovies()) {
+            is Result.Succes -> {
+                // On utilise la fonction map pour convertir les catégories de la réponse serveur
+                // en liste de categories d'objets de l'application
+                val movies = result.data.map {
+                    it.toTrending()
+                }
+                Result.Succes(movies)
+            }
+            is Result.Error -> result
+        }
+    }
+
+    suspend fun getTrendingPeople(): Result<List<Person>> {
+
+        return when(val result = online.getTrendingPeople()) {
+            is Result.Succes -> {
+                // On utilise la fonction map pour convertir les catégories de la réponse serveur
+                // en liste de categories d'objets de l'application
+                val people = result.data.map {
+                    it.toPerson()
+                }
+                Result.Succes(people)
             }
             is Result.Error -> result
         }
