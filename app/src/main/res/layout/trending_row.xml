@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
-
         <variable
-            name="title"
+            name="titleRow"
             type="String" />
     </data>
 
@@ -18,7 +16,7 @@
             android:id="@+id/trending_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DUUUR"
+            android:text="@{titleRow}"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trending_title"
+            tools:listitem="@layout/trending_movie_item"
             app:spanCount="4"
             tools:itemCount="4" />
 

@@ -11,4 +11,7 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_movies">Movies</string>
+    <string name="title_trending_people">Trending actors</string>
+    <string name="title_trending_movies">Trending movies</string>
+    <string name="title_trending_categories">Trending categories</string>
 </resources>

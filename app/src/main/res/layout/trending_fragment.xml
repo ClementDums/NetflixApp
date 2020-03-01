@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleRow="@{@string/title_trending_movies}"/>
 
     <include layout="@layout/trending_row"
         android:id="@+id/trending_people"
@@ -21,7 +22,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trending_movies"/>
+        app:layout_constraintTop_toBottomOf="@id/trending_movies"
+        app:titleRow="@{@string/title_trending_people}" />
+
 
     <include layout="@layout/trending_row"
         android:id="@+id/trending_categories"
@@ -29,7 +32,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trending_people"/>
+        app:layout_constraintTop_toBottomOf="@id/trending_people"
+        app:titleRow="@{@string/title_trending_categories}"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
