@@ -12,5 +12,11 @@ data class Movie(
     val adult: Boolean,
     val backdrop_path: String?,
     val original_title: String,
-    val release_date: String?
+    val release_date: String?,
+    val genre_ids: List<Int>,
+    val original_language: String,
+    val popularity: String,
+    val video: Boolean,
+    val vote_average: String,
+    val vote_count: String
 ) : Parcelable

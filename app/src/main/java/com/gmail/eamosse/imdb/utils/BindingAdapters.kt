@@ -15,4 +15,5 @@ fun bindImage(imageView: ImageView, url: String?) {
             .centerCrop()
             .into(imageView)
     }
+
 }

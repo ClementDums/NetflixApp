@@ -32,5 +32,11 @@ internal fun TrendingMovieResponse.Result.toTrending() = Movie(
     poster_path = poster_path,
     id = id,
     overview = overview,
-    release_date = release_date
+    release_date = release_date,
+    genre_ids = genre_ids,
+    original_language = original_language,
+    popularity = popularity.toString(),
+    video = video,
+    vote_average = vote_average.toString(),
+    vote_count = vote_count.toString()
 )

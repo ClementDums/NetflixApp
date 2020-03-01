@@ -14,17 +14,4 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String>
         get() = _error
-
-//    fun getMovieDetail(movieId:Int){
-//        viewModelScope.launch(Dispatchers.IO) {
-//            when (val result = repository.getMovieDetail(movieId)) {
-//                is Result.Succes -> {
-//                    _movieDetail.postValue(result.data)
-//                }
-//                is Result.Error -> {
-//                    _error.postValue(result.message)
-//                }
-//            }
-//        }
-//    }
 }

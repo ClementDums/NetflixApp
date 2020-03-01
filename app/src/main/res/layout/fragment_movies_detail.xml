@@ -29,38 +29,81 @@
                 app:bindImage="@{item.poster_path}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 />
 
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{item.title}"
                 android:layout_marginStart="10dp"
                 android:textSize="30sp"
-                app:layout_constraintStart_toEndOf="@id/poster"
+                app:layout_constraintTop_toBottomOf="@id/poster"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Titanic"
                 />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/movie_overview"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
+                android:text="@{item.release_date}"
+                android:layout_marginStart="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_title" />
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="01-12-2020"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/stars"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_noun_star_burst_3157396"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/vote_average"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/movie_tagline"
-                android:layout_width="match_parent"
+                android:id="@+id/vote_average"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
+                android:text="@{item.vote_average}"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/stars"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                tools:text="10"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/people"
+                android:layout_marginStart="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_noun_people_2718558"
+                app:layout_constraintTop_toBottomOf="@id/stars"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_overview" />
+                app:layout_constraintEnd_toStartOf="@id/vote_count"/>
+
+            <TextView
+                android:id="@+id/vote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@{item.vote_count}"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/people"
+                app:layout_constraintTop_toBottomOf="@id/vote_average"
+                tools:text="500"
+                />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
