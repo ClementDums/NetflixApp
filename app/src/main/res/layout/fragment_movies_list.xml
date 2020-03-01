@@ -13,7 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:spanCount="4"
         tools:listitem="@layout/movies_list_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

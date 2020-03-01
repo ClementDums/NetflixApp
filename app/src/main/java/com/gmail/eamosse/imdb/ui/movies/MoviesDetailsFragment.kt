@@ -9,11 +9,10 @@ import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.idbdata.data.Movie
 import com.gmail.eamosse.imdb.databinding.FragmentMoviesDetailBinding
 import com.gmail.eamosse.imdb.ui.home.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_movies_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesDetailsFragment: Fragment(){
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding:FragmentMoviesDetailBinding
     val args:MoviesDetailsFragmentArgs by navArgs()
     lateinit var movie:Movie
@@ -31,8 +30,8 @@ class MoviesDetailsFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         movie = args.movie
-        movie_title.text = movie.title
-        movie_overview.text = movie.overview
+        //movie_title.text = movie.title
+        //movie_overview.text = movie.overview
     }
 }
 
