@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trending_title"
-            tools:listitem="@layout/trending_movie_item"
+            tools:listitem="@layout/trending_categorie_item"
             app:spanCount="4"
             tools:itemCount="4" />
 

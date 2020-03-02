@@ -34,6 +34,7 @@ class TrendingViewModel(private val repository: MovieRepository) : ViewModel() {
     init {
         loadTrendingPeople()
         loadTrendingMovies()
+        loadTrendingCategories()
     }
 
 

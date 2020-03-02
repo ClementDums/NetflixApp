@@ -46,9 +46,7 @@ class TrendingFragment : Fragment() {
                 binding.trendingPeople.trendingItems.adapter = TrendingPersonAdapter(it)
             })
             categories.observe(viewLifecycleOwner, Observer {
-                binding.trendingCategories.trendingItems.adapter = CategoryAdapter(it){
-
-                }
+                binding.trendingCategories.trendingItems.adapter = CategoryAdapter(it){}
             })
         }
     }
