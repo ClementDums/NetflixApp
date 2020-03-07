@@ -14,4 +14,6 @@
     <string name="title_trending_people">Trending actors</string>
     <string name="title_trending_movies">Trending movies</string>
     <string name="title_trending_categories">Trending categories</string>
+    <string name="checkbox_series">Séries</string>
+    <string name="checkbox_films">Films</string>
 </resources>
