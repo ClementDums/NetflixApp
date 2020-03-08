@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.gmail.eamosse.imdb.databinding.FragmentMoviesDetailBinding
 import com.gmail.eamosse.imdb.ui.home.CategoryAdapter
 import com.gmail.eamosse.imdb.ui.home.HomeFragmentDirections
 import com.gmail.eamosse.imdb.ui.home.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_movies_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesDetailsFragment: Fragment(){
@@ -41,11 +43,18 @@ class MoviesDetailsFragment: Fragment(){
                 binding.item = it
             })
 
+            myNote.observe(viewLifecycleOwner, Observer {
+
+            })
+
             error.observe(viewLifecycleOwner, Observer {
                 //afficher l'erreur
             })
         }
 
+        rating_bar.setOnRatingBarChangeListener { ratingBar, fl, b ->
+            viewModel.setMyNote(fl)
+        }
     }
 }
 

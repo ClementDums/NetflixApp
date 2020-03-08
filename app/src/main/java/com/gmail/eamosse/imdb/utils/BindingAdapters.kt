@@ -1,5 +1,6 @@
 package com.gmail.eamosse.imdb.utils
 
+import android.graphics.Color
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -15,5 +16,4 @@ fun bindImage(imageView: ImageView, url: String?) {
             .centerCrop()
             .into(imageView)
     }
-
 }
