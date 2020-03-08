@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="fragment"
+            type="com.gmail.eamosse.imdb.ui.home.HomeFragment" />
+        <variable
+            name="viewmodel"
+            type="com.gmail.eamosse.imdb.ui.home.HomeViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -18,6 +27,8 @@
             app:layout_constraintBottom_toTopOf="@id/category_list"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/checkbox_series"
+            android:onClick="@{()-> viewmodel.filterByFilms()}"
+            android:checked="@{viewmodel.isFilmsFilter}"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
         <androidx.appcompat.widget.AppCompatCheckBox
@@ -25,6 +36,8 @@
             android:text="@string/checkbox_series"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{()-> viewmodel.filterBySeries()}"
+            android:checked="@{viewmodel.isSeriesFilter}"
             app:layout_constraintStart_toEndOf="@id/checkbox_films"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

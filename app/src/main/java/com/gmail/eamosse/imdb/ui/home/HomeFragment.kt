@@ -24,6 +24,8 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.fragment = this
+        binding.viewmodel = homeViewModel
         return binding.root
     }
 
@@ -48,4 +50,13 @@ class HomeFragment : Fragment() {
             })
         }
 
-    }}
+    }
+    fun onFilmsToggle(){
+        homeViewModel.filterByFilms()
+
+    }
+
+    fun onSeriesToggle(){
+        homeViewModel.filterBySeries()
+    }
+}

@@ -30,6 +30,9 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    var isFilmsFilter = true
+    var isSeriesFilter = true
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getToken()) {
@@ -67,5 +70,13 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
                 }
             }
         }
+    }
+
+    fun filterBySeries(){
+
+    }
+
+    fun filterByFilms(){
+
     }
 }
