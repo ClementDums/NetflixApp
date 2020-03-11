@@ -1,13 +1,11 @@
 package com.gmail.eamosse.idbdata.repository
 
+import com.gmail.eamosse.idbdata.api.response.*
 import com.gmail.eamosse.idbdata.api.response.toEntity
 import com.gmail.eamosse.idbdata.api.response.toPerson
 import com.gmail.eamosse.idbdata.api.response.toToken
 import com.gmail.eamosse.idbdata.api.response.toTrending
-import com.gmail.eamosse.idbdata.data.Category
-import com.gmail.eamosse.idbdata.data.Movie
-import com.gmail.eamosse.idbdata.data.Person
-import com.gmail.eamosse.idbdata.data.Token
+import com.gmail.eamosse.idbdata.data.*
 import com.gmail.eamosse.idbdata.datasources.LocalDataSource
 import com.gmail.eamosse.idbdata.datasources.OnlineDataSource
 import com.gmail.eamosse.idbdata.utils.Result
@@ -40,6 +38,17 @@ class MovieRepository : KoinComponent {
         }
     }
 
+    suspend fun getSession(token:String): Result<Session> {
+        return when(val result = online.getSession(token)) {
+            is Result.Succes -> {
+                //save the response in the local database
+                //return the response
+                Result.Succes(result.data.toSession())
+            }
+            is Result.Error -> result
+        }
+    }
+
     suspend fun getCategories(): Result<List<Category>> {
 
         return when(val result = online.getCategories()) {
@@ -69,6 +78,10 @@ class MovieRepository : KoinComponent {
             }
             is Result.Error -> result
         }
+    }
+
+    suspend fun rateMovie(note:Float, id:Int?){
+        online.rateMovie(note,id)
     }
 
     suspend fun getTrendingMovies(): Result<List<Movie>> {

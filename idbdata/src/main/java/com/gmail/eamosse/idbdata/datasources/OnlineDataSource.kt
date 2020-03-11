@@ -31,6 +31,13 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
+    suspend fun getSession(token:String): Result<SessionResponse> {
+        return safeCall {
+            val response = service.getSession(token)
+            response.parse()
+        }
+    }
+
     suspend fun getCategories(): Result<List<CategoryResponse.Genre>> {
         return try {
             val response = service.getCategories()
@@ -91,6 +98,10 @@ internal class OnlineDataSource(private val service: MovieService) {
                 code = -1
             )
         }
+    }
+
+    suspend fun rateMovie(note:Float,id:Int?){
+        service.rateMovie(note,id)
     }
 }
 

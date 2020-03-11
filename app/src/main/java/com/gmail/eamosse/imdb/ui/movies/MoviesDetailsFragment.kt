@@ -1,15 +1,19 @@
 package com.gmail.eamosse.imdb.ui.movies
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.idbdata.data.Movie
+import com.gmail.eamosse.idbdata.data.Token
 import com.gmail.eamosse.imdb.BR
 import com.gmail.eamosse.imdb.databinding.FragmentMoviesDetailBinding
 import com.gmail.eamosse.imdb.ui.home.CategoryAdapter
@@ -39,6 +43,12 @@ class MoviesDetailsFragment: Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         with(viewModel) {
+            getMovieDetails(args.movie)
+            token.observe(viewLifecycleOwner, Observer {
+                askPermission(it.requestToken)
+                viewModel.getSession()
+            })
+
             movieDetails.observe(viewLifecycleOwner, Observer {
                 binding.item = it
             })
@@ -55,6 +65,13 @@ class MoviesDetailsFragment: Fragment(){
         rating_bar.setOnRatingBarChangeListener { ratingBar, fl, b ->
             viewModel.setMyNote(fl)
         }
+    }
+
+    fun askPermission(token: String){
+        val url = "https://www.themoviedb.org/authenticate/$token"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
     }
 }
 

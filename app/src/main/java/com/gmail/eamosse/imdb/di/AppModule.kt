@@ -11,8 +11,9 @@ import org.koin.dsl.module
 
 val appModule = module {
     single(named("API_KEY")) {
-        "507a86e6d98ae2b2cd600e594ee02637"
+        "963fa69378d0f9a586527fa9dfe50806"
     }
+    //963fa69378d0f9a586527fa9dfe50806
 
     single(named("BASE_URL")) {
         "https://api.themoviedb.org/3/"
