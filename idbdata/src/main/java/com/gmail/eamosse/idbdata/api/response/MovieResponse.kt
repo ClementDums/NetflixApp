@@ -34,7 +34,7 @@ internal data class MovieResponse(
                 overview = overview,
                 release_date = release_date, genre_ids = genre_ids,
                 original_language = original_language,
-                popularity = popularity.toString(),
+                popularity = popularity,
                 video = video,
                 vote_average = vote_average.toString(),
                 vote_count = vote_count.toString()

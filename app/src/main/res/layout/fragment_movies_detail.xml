@@ -108,11 +108,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     app:layout_constraintTop_toBottomOf="@+id/vote_count"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="@{item.overview}"
                     />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/movie_popularity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/movie_overview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{`Popularity: ` + item.popularity}"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
