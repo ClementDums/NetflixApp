@@ -28,8 +28,6 @@ class MoviesDetailsFragment: Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMoviesDetailBinding.inflate(inflater, container, false)
-        binding.setVariable(BR.item, args.movie)
-        binding.executePendingBindings()
         return binding.root
     }
 
@@ -37,7 +35,9 @@ class MoviesDetailsFragment: Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         with(viewModel) {
+            getMovieDetails(args.movieId)
             movieDetails.observe(viewLifecycleOwner, Observer {
+                println(it)
                 binding.item = it
             })
 

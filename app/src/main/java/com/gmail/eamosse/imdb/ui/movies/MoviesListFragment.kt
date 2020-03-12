@@ -40,7 +40,7 @@ class MoviesListFragment:Fragment(){
 
             discovers.observe(viewLifecycleOwner, Observer {
                 binding.moviesList.adapter = DiscoversAdapter(it){
-                    val action = MoviesListFragmentDirections.actionNavigationMoviesListFragmentToNavigationMoviesDetailFragment(it)
+                    val action = MoviesListFragmentDirections.actionNavigationMoviesListFragmentToNavigationMoviesDetailFragment(it.id)
                    findNavController().navigate(action)
                 }
             })

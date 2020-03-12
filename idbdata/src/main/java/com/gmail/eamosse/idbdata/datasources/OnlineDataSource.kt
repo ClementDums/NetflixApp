@@ -92,5 +92,15 @@ internal class OnlineDataSource(private val service: MovieService) {
             )
         }
     }
+
+    suspend fun getMovieDetails(movie_id:Int):Result<MovieDetailsResponse>{
+        return safeCall {
+            val response:Response<MovieDetailsResponse> = service.getMovieDetails(movie_id)
+            when(val result:Result<MovieDetailsResponse> = response.parse()){
+                is Result.Succes ->Result.Succes(result.data)
+                is Result.Error -> result
+            }
+        }
+    }
 }
 

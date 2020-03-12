@@ -13,7 +13,7 @@ data class Movie(
     val backdrop_path: String?,
     val original_title: String,
     val release_date: String?,
-    val genre_ids: List<Int>,
+    val genre_ids: List<Int>?,
     val original_language: String,
     val popularity: String,
     val video: Boolean,

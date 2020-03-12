@@ -1,13 +1,8 @@
 package com.gmail.eamosse.idbdata.api.response
 
 import com.gmail.eamosse.idbdata.data.Movie
-import com.google.gson.annotations.SerializedName
 
-internal data class MovieResponse(
-    @SerializedName("results")
-    val results: List<MovieItem>
-) {
-    data class MovieItem(
+internal data class MovieDetailsResponse(
         val adult: Boolean,
         val backdrop_path: String?,
         val genre_ids: List<Int>?,
@@ -42,4 +37,3 @@ internal data class MovieResponse(
         }
     }
 
-}
