@@ -57,8 +57,8 @@
         android:label="@string/title_movies"
         tools:layout="@layout/fragment_movies_detail" >
         <argument
-            android:name="movie"
-            app:argType="com.gmail.eamosse.idbdata.data.Movie" />
+            android:name="movieId"
+            app:argType="integer" />
     </fragment>
 
     <fragment

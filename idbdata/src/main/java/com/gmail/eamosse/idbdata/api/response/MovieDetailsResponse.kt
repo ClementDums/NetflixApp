@@ -2,13 +2,8 @@ package com.gmail.eamosse.idbdata.api.response
 
 import com.gmail.eamosse.idbdata.data.Movie
 import com.gmail.eamosse.idbdata.data.ProductionCompany
-import com.google.gson.annotations.SerializedName
 
-internal data class MovieResponse(
-    @SerializedName("results")
-    val results: List<MovieItem>
-) {
-    data class MovieItem(
+internal data class MovieDetailsResponse(
         val adult: Boolean,
         val backdrop_path: String?,
         val genre_ids: List<Int>?,
@@ -17,8 +12,8 @@ internal data class MovieResponse(
         val original_title: String,
         val overview: String,
         val popularity: Double,
-        val production_companies: List<ProductionCompany>?,
         val poster_path: String?,
+        val production_companies: List<ProductionCompany>?,
         val release_date: String?,
         val title: String,
         val video: Boolean,
@@ -45,4 +40,3 @@ internal data class MovieResponse(
         }
     }
 
-}

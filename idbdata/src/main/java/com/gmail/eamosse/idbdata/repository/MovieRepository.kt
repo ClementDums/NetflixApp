@@ -101,4 +101,14 @@ class MovieRepository : KoinComponent {
         }
     }
 
+    suspend fun getMovieDetails(movie_id:Int): Result<Movie> {
+
+        return when(val result = online.getMovieDetails(movie_id)) {
+            is Result.Succes -> {
+                val movie = result.data.toMovie()
+                Result.Succes(movie)
+            }
+            is Result.Error -> result
+        }
+    }
 }

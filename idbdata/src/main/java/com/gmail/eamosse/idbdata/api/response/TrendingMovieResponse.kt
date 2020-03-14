@@ -1,6 +1,7 @@
 package com.gmail.eamosse.idbdata.api.response
 
 import com.gmail.eamosse.idbdata.data.Movie
+import com.gmail.eamosse.idbdata.data.ProductionCompany
 
 internal data class TrendingMovieResponse(
     val page: Int,
@@ -9,13 +10,14 @@ internal data class TrendingMovieResponse(
     data class Result(
         val adult: Boolean,
         val backdrop_path: String,
-        val genre_ids: List<Int>,
+        val genre_ids: List<Int>?,
         val id: Int,
         val original_language: String,
         val original_title: String,
         val overview: String,
         val popularity: Double,
         val poster_path: String,
+        val production_companies: List<ProductionCompany>?,
         val release_date: String,
         val title: String,
         val video: Boolean,
@@ -35,7 +37,8 @@ internal fun TrendingMovieResponse.Result.toTrending() = Movie(
     release_date = release_date,
     genre_ids = genre_ids,
     original_language = original_language,
-    popularity = popularity.toString(),
+    popularity = popularity,
+    production_companies = production_companies,
     video = video,
     vote_average = vote_average.toString(),
     vote_count = vote_count.toString()
