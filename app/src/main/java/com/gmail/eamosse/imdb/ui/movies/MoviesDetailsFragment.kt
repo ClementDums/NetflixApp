@@ -39,6 +39,11 @@ class MoviesDetailsFragment: Fragment(){
             movieDetails.observe(viewLifecycleOwner, Observer {
                 println(it)
                 binding.item = it
+                binding.companiesRecycler.adapter = it.production_companies?.let { it1 ->
+                    ProductionCompaniesAdapter(
+                        it1
+                    )
+                }
             })
 
             error.observe(viewLifecycleOwner, Observer {

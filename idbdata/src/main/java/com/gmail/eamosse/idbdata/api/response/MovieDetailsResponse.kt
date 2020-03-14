@@ -1,6 +1,7 @@
 package com.gmail.eamosse.idbdata.api.response
 
 import com.gmail.eamosse.idbdata.data.Movie
+import com.gmail.eamosse.idbdata.data.ProductionCompany
 
 internal data class MovieDetailsResponse(
         val adult: Boolean,
@@ -12,6 +13,7 @@ internal data class MovieDetailsResponse(
         val overview: String,
         val popularity: Double,
         val poster_path: String?,
+        val production_companies: List<ProductionCompany>?,
         val release_date: String?,
         val title: String,
         val video: Boolean,
@@ -30,6 +32,7 @@ internal data class MovieDetailsResponse(
                 release_date = release_date, genre_ids = genre_ids,
                 original_language = original_language,
                 popularity = popularity,
+                production_companies = production_companies,
                 video = video,
                 vote_average = vote_average.toString(),
                 vote_count = vote_count.toString()

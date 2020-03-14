@@ -25,6 +25,7 @@
                 android:id="@+id/poster"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/ic_launcher_background"
                 app:bindImage="@{item.poster_path}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +38,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@{item.title}"
                 android:layout_marginStart="10dp"
                 android:textSize="30sp"
@@ -128,6 +130,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@{`Popularity: ` + item.popularity}"
                 />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/companies_title"
+                android:layout_marginTop="20dp"
+                android:textSize="21sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/movie_popularity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/companies_recycler"
+                android:text="@string/production_companies"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/companies_recycler"
+                tools:listitem="@layout/production_companies_item"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/companies_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

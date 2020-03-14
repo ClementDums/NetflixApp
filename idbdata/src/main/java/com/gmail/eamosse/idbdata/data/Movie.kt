@@ -3,7 +3,6 @@ package com.gmail.eamosse.idbdata.data
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class Movie(
     val id: Int,
     val title: String,
@@ -16,7 +15,8 @@ data class Movie(
     val genre_ids: List<Int>?,
     val original_language: String,
     val popularity: Double,
+    val production_companies: List<ProductionCompany>?,
     val video: Boolean,
     val vote_average: String,
     val vote_count: String
-) : Parcelable
+)
