@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -45,6 +46,12 @@ class HomeFragment : Fragment() {
 
             error.observe(viewLifecycleOwner, Observer {
                 //afficher l'erreur
+            })
+
+            showShimmer.observe(viewLifecycleOwner, Observer {
+                if(!it){
+                    binding.shimmerViewContainer.hideShimmer()
+                }
             })
         }
 

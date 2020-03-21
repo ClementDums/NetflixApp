@@ -72,9 +72,9 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun getMovie(genre_id:Int): Result<List<MovieResponse.MovieItem>> {
+    suspend fun getDiscover(genre_id:Int, pageNumber:Int): Result<List<MovieResponse.MovieItem>> {
         return try {
-            val response = service.getDiscover(genre_id)
+            val response = service.getDiscover(genre_id,pageNumber)
             if (response.isSuccessful) {
                 Result.Succes(response.body()!!.results)
             } else {
