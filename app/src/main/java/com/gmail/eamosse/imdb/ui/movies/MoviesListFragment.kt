@@ -21,7 +21,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.os.Parcelable
 
 
-
 class MoviesListFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
@@ -61,7 +60,12 @@ class MoviesListFragment : Fragment() {
             })
 
             discovers.observe(viewLifecycleOwner, Observer {
-                binding.moviesList.scrollToPosition(it.count()-20)
+                if (page > 1) {
+                    binding.moviesList.scrollToPosition(it.count() - 21)
+                } else {
+                    binding.moviesList.scrollToPosition(it.count() - 20)
+
+                }
                 binding.moviesList.adapter = DiscoversAdapter(it) {
                     val action =
                         MoviesListFragmentDirections.actionNavigationMoviesListFragmentToNavigationMoviesDetailFragment(
