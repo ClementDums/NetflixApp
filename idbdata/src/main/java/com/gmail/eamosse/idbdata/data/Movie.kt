@@ -18,5 +18,6 @@ data class Movie(
     val production_companies: List<ProductionCompany>?,
     val video: Boolean,
     val vote_average: String,
-    val vote_count: String
+    val vote_count: String,
+    var videos: List<Video>?
 )

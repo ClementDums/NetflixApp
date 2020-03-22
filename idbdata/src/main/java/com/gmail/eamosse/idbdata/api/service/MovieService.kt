@@ -23,6 +23,9 @@ internal interface MovieService {
     @GET("movie/{movie_id}")
     suspend fun getMovieDetails(@Path("movie_id") movieId:Int): Response<MovieDetailsResponse>
 
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(@Path("movie_id") movieId:Int): Response<VideosMovieResponse>
+
     @GET("trending/movie/week")
     suspend fun getTrendingMovie(): Response<TrendingMovieResponse>
 
