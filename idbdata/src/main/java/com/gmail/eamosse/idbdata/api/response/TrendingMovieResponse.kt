@@ -41,5 +41,6 @@ internal fun TrendingMovieResponse.Result.toTrending() = Movie(
     production_companies = production_companies,
     video = video,
     vote_average = vote_average.toString(),
-    vote_count = vote_count.toString()
+    vote_count = vote_count.toString(),
+    videos = null
 )

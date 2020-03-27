@@ -15,4 +15,5 @@
     <string name="title_trending_movies">Trending movies</string>
     <string name="title_trending_categories">Trending categories</string>
     <string name="production_companies">Production companies</string>
+    <string name="trailer">Trailer</string>
 </resources>

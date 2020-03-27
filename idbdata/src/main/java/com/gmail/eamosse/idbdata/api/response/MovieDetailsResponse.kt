@@ -35,7 +35,8 @@ internal data class MovieDetailsResponse(
                 production_companies = production_companies,
                 video = video,
                 vote_average = vote_average.toString(),
-                vote_count = vote_count.toString()
+                vote_count = vote_count.toString(),
+                videos = null
             )
         }
     }

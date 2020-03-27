@@ -132,7 +132,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/companies_title"
+                android:id="@+id/trailer"
                 android:layout_marginTop="20dp"
                 android:textSize="21sp"
                 android:layout_width="wrap_content"
@@ -140,8 +140,46 @@
                 app:layout_constraintTop_toBottomOf="@id/movie_popularity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/trailer_video"
+                android:text="@string/trailer"/>
+
+            <WebView
+                android:layout_width="match_parent"
+                android:id="@+id/trailer_video"
+                app:layout_constraintTop_toBottomOf="@id/trailer"
+                app:layout_constraintBottom_toTopOf="@id/companies_title"
+                android:layout_height="180dp"></WebView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/companies_title"
+                android:layout_marginTop="20dp"
+                android:textSize="21sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/trailer_video"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/companies_recycler"
                 android:text="@string/production_companies"/>
+
+
+
+
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/trailer_path"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:textSize="21sp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/movie_popularity"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/companies_recycler"-->
+<!--                android:text="@{item.videos[0].key}"/>-->
+
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/companies_recycler"

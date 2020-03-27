@@ -102,5 +102,15 @@ internal class OnlineDataSource(private val service: MovieService) {
             }
         }
     }
+
+    suspend fun getMovieVideos(movie_id: Int):Result<List<VideosMovieResponse.Result>>{
+        return safeCall {
+            val response:Response<VideosMovieResponse> = service.getMovieVideos(movie_id)
+            when(val result:Result<VideosMovieResponse> = response.parse()){
+                is Result.Succes ->Result.Succes(result.data.results)
+                is Result.Error -> result
+            }
+        }
+    }
 }
 
