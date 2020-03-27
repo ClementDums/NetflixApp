@@ -40,9 +40,7 @@ class MoviesDetailsFragment : Fragment() {
 
         with(viewModel) {
             getMovieDetails(args.movieId)
-            getMovieVideos(args.movieId)
-            movieDetails.observe(viewLifecycleOwner, Observer {
-                binding.item = it
+            movieVideos.observe(viewLifecycleOwner, Observer {
                 binding.trailerVideo.webViewClient = object : WebViewClient() {
                     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                         view?.loadUrl(url)
@@ -50,7 +48,7 @@ class MoviesDetailsFragment : Fragment() {
                     }
                 }
                 binding.trailerVideo.settings.javaScriptEnabled = true
-                val video = it.videos ?: emptyList()
+                val video = it ?: emptyList()
                 if (video.isNotEmpty()) {
                     val url = video[0].key
                     binding.trailerVideo.loadData(
@@ -59,6 +57,10 @@ class MoviesDetailsFragment : Fragment() {
                         "utf-8"
                     )
                 }
+            })
+            movieDetails.observe(viewLifecycleOwner, Observer {
+                binding.item = it
+                getMovieVideos(args.movieId)
 
                 binding.companiesRecycler.adapter = it.production_companies?.let { it1 ->
                     ProductionCompaniesAdapter(
