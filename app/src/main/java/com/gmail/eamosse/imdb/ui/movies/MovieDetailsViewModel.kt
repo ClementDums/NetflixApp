@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.gmail.eamosse.idbdata.utils.Result
 
-
 class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel() {
     private val _movieDetails: MutableLiveData<Movie> = MutableLiveData()
     val movieDetails: LiveData<Movie>
