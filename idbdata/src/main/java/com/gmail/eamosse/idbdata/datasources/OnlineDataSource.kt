@@ -21,7 +21,7 @@ internal class OnlineDataSource(private val service: MovieService) {
     /**
      * Récupérer le token du serveur
      * @return [Result<Token>]
-     * Si [Result.Succes], tout s'est bien passé
+     * Si [Result.Success], tout s'est bien passé
      * Sinon, une erreur est survenue
      */
     suspend fun getToken(): Result<TokenResponse> {
@@ -35,7 +35,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         return try {
             val response = service.getCategories()
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.genres)
+                Result.Success(response.body()!!.genres)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -56,7 +56,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         return safeCall {
             val response:Response<TrendingMovieResponse> = service.getTrendingMovie()
             when(val result:Result<TrendingMovieResponse> = response.parse()){
-                is Result.Succes ->Result.Succes(result.data.results)
+                is Result.Success ->Result.Success(result.data.results)
                 is Result.Error -> result
             }
         }
@@ -66,7 +66,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         return safeCall {
             val response:Response<TrendingPersonResponse> = service.getTrendingPeople()
             when(val result:Result<TrendingPersonResponse> = response.parse()){
-                is Result.Succes ->Result.Succes(result.data.results)
+                is Result.Success ->Result.Success(result.data.results)
                 is Result.Error -> result
             }
         }
@@ -76,7 +76,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         return try {
             val response = service.getDiscover(genre_id,pageNumber)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Success(response.body()!!.results)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -97,7 +97,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         return safeCall {
             val response:Response<MovieDetailsResponse> = service.getMovieDetails(movie_id)
             when(val result:Result<MovieDetailsResponse> = response.parse()){
-                is Result.Succes ->Result.Succes(result.data)
+                is Result.Success ->Result.Success(result.data)
                 is Result.Error -> result
             }
         }
@@ -107,7 +107,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         return safeCall {
             val response:Response<VideosMovieResponse> = service.getMovieVideos(movie_id)
             when(val result:Result<VideosMovieResponse> = response.parse()){
-                is Result.Succes ->Result.Succes(result.data.results)
+                is Result.Success ->Result.Success(result.data.results)
                 is Result.Error -> result
             }
         }

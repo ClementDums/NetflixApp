@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.gmail.eamosse.idbdata.utils.Result
 
-
 class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel() {
     private val _movieDetails: MutableLiveData<Movie> = MutableLiveData()
     val movieDetails: LiveData<Movie>
@@ -29,7 +28,7 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
     fun getMovieDetails(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getMovieDetails(movieId)) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _movieDetails.postValue(result.data)
                 }
                 is Result.Error -> {
@@ -42,14 +41,29 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
     fun getMovieVideos(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getMovieVideos(movieId)) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _movieVideos.postValue(result.data)
                 }
                 is Result.Error -> {
-
                     _error.postValue(result.message)
                 }
             }
+        }
+    }
+
+    fun setLike(movie: Movie) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val like = repository.isLiked(movie.id) != 1
+            repository.registerMovie(movie = movie)
+            repository.setLike(movie_id = movie.id, isLiked = like)
+        }
+    }
+
+    fun setFavorite(movie: Movie) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val favorite = repository.isFavorite(movie.id) != 1
+            repository.registerMovie(movie = movie)
+            repository.setFavorite(movie_id = movie.id, isFavorite = favorite)
         }
     }
 }

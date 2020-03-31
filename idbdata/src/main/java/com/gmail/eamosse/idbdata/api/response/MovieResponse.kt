@@ -4,46 +4,50 @@ import com.gmail.eamosse.idbdata.data.Movie
 import com.gmail.eamosse.idbdata.data.ProductionCompany
 import com.google.gson.annotations.SerializedName
 
-internal data class MovieResponse(
-    @SerializedName("results")
-    val results: List<MovieItem>
-) {
+internal data class MovieResponse(val results: List<MovieItem>) {
     data class MovieItem(
         val adult: Boolean,
-        val backdrop_path: String?,
-        val genre_ids: List<Int>?,
+        @SerializedName("backdrop_path")
+        val backdropPath: String?,
+        @SerializedName("genre_ids")
+        val genreIds: List<Int>?,
         val id: Int,
-        val original_language: String,
-        val original_title: String,
+        @SerializedName("original_language")
+        val originalLanguage: String,
+        @SerializedName("original_title")
+        val originalTitle: String,
         val overview: String,
         val popularity: Double,
-        val production_companies: List<ProductionCompany>?,
-        val poster_path: String?,
-        val release_date: String?,
+        @SerializedName("production_companies")
+        val productionCompanies: List<ProductionCompany>?,
+        @SerializedName("poster_path")
+        val posterPath: String?,
+        @SerializedName("release_date")
+        val releaseDate: String?,
         val title: String,
         val video: Boolean,
-        val vote_average: Double,
-        val vote_count: Int
+        @SerializedName("vote_average")
+        val voteAverage: Double,
+        @SerializedName("vote_count")
+        val voteCount: Int
     ) {
-        fun toMovie(): Movie {
-            return Movie(
-                adult = adult,
-                original_title = original_title,
-                title = title,
-                backdrop_path = backdrop_path,
-                poster_path = poster_path,
-                id = id,
-                overview = overview,
-                release_date = release_date, genre_ids = genre_ids,
-                original_language = original_language,
-                popularity = popularity,
-                production_companies = production_companies,
-                video = video,
-                vote_average = vote_average.toString(),
-                vote_count = vote_count.toString(),
-                videos = null
-            )
-        }
+        fun toMovie(): Movie = Movie(
+            adult = adult,
+            original_title = originalTitle,
+            title = title,
+            backdrop_path = backdropPath,
+            poster_path = posterPath,
+            id = id,
+            overview = overview,
+            release_date = releaseDate,
+            genre_ids = genreIds,
+            original_language = originalLanguage,
+            popularity = popularity,
+            production_companies = productionCompanies,
+            video = video,
+            vote_average = voteAverage.toString(),
+            vote_count = voteCount.toString(),
+            videos = null
+        )
     }
-
 }

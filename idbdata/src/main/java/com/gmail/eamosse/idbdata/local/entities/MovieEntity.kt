@@ -1,8 +1,19 @@
-package com.gmail.eamosse.idbdata.data
+package com.gmail.eamosse.idbdata.local.entities
 
-import com.gmail.eamosse.idbdata.local.entities.MovieEntity
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.gmail.eamosse.idbdata.data.Movie
+import com.gmail.eamosse.idbdata.data.ProductionCompany
+import com.gmail.eamosse.idbdata.data.Video
 
-data class Movie(
+/**
+ * Modélise les tokens dans la base de données
+ */
+@Entity(
+    tableName = "idb_movies"
+)
+internal data class MovieEntity(
+    @PrimaryKey
     val id: Int,
     val title: String,
     val overview: String,
@@ -11,17 +22,14 @@ data class Movie(
     val backdrop_path: String?,
     val original_title: String,
     val release_date: String?,
-    val genre_ids: List<Int>?,
     val original_language: String,
     val popularity: Double,
-    val production_companies: List<ProductionCompany>?,
     val video: Boolean,
     val vote_average: String,
-    val vote_count: String,
-    var videos: List<Video>?
+    val vote_count: String
 )
 
-internal fun Movie.toEntityMovie() = MovieEntity(
+internal fun MovieEntity.toMovie() = Movie(
     id = id,
     title = title,
     overview = overview,
@@ -30,9 +38,12 @@ internal fun Movie.toEntityMovie() = MovieEntity(
     backdrop_path = backdrop_path,
     original_title = original_title,
     release_date = release_date,
+    genre_ids = null,
     original_language = original_language,
     popularity = popularity,
+    production_companies = null,
     video = video,
     vote_average = vote_average,
-    vote_count = vote_count
+    vote_count = vote_count,
+    videos = null
 )

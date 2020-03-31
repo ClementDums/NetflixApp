@@ -1,6 +1,7 @@
 package com.gmail.eamosse.idbdata.api.response
 
 import com.gmail.eamosse.idbdata.data.Person
+import com.google.gson.annotations.SerializedName
 
 internal data class TrendingPersonResponse(
     val page: Int,
@@ -10,30 +11,43 @@ internal data class TrendingPersonResponse(
         val adult: Boolean,
         val gender: Int,
         val id: Int,
-        val known_for: List<KnownFor>,
-        val known_for_department: String,
-        val media_type: String,
+        @SerializedName("known_for")
+        val knownFor: List<KnownFor>,
+        @SerializedName("known_for_department")
+        val knownForDepartment: String,
+        @SerializedName("media_type")
+        val mediaType: String,
         val name: String,
         val popularity: Double,
-        val profile_path: String
+        @SerializedName("profile_path")
+        val profilePath: String
     )
 
     data class KnownFor(
         val adult: Boolean,
-        val backdrop_path: String,
-        val genre_ids: List<Int>,
+        @SerializedName("backdrop_path")
+        val backdropPath: String,
+        @SerializedName("genre_ids")
+        val genreIds: List<Int>,
         val id: Int,
-        val media_type: String,
-        val original_language: String,
-        val original_title: String,
+        @SerializedName("media_type")
+        val mediaType: String,
+        @SerializedName("original_language")
+        val originalLanguage: String,
+        @SerializedName("original_title")
+        val originalTitle: String,
         val overview: String,
         val popularity: Double,
-        val poster_path: String,
-        val release_date: String,
+        @SerializedName("poster_path")
+        val posterPath: String,
+        @SerializedName("release_date")
+        val releaseDate: String,
         val title: String,
         val video: Boolean,
-        val vote_average: Double,
-        val vote_count: Int
+        @SerializedName("vote_average")
+        val voteAverage: Double,
+        @SerializedName("vote_count")
+        val voteCount: Int
     )
 }
 
@@ -43,5 +57,5 @@ internal fun TrendingPersonResponse.Person.toPerson() = Person(
     name = name,
     gender = gender,
     popularity = popularity,
-    profile_path = profile_path
+    profile_path = profilePath
 )

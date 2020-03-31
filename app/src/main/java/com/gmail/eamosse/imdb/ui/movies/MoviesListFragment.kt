@@ -1,6 +1,7 @@
 package com.gmail.eamosse.imdb.ui.movies
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +13,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.imdb.databinding.FragmentMoviesListBinding
-import com.gmail.eamosse.imdb.ui.home.CategoryAdapter
 import com.gmail.eamosse.imdb.ui.home.DiscoversAdapter
-import com.gmail.eamosse.imdb.ui.home.HomeFragmentDirections
 import com.gmail.eamosse.imdb.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_movies_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import android.os.Parcelable
 
 
 class MoviesListFragment : Fragment() {

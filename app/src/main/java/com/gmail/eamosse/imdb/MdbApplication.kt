@@ -15,15 +15,15 @@ import org.koin.core.context.startKoin
 class MdbApplication : Application() {
 
     /**
-     * Méthode qui s'exécute à la créatioo de l'application
+     * Méthode qui s'exécute à la création de l'application
      * On en profite pour injecter tous les modules Koin
      */
     override fun onCreate() {
         super.onCreate()
-        // Au démarrage de l'application, on indique à Koin, les différents modules à injecter
+        // Au démarrage de l'application, on indique à Koin les différents modules à injecter
         startKoin {
             androidContext(this@MdbApplication)
-            //Ici on ajoute que deux modules, d'autre pourront être ajoutés au besoin
+            //Ici on ajoute que deux modules, d'autres pourront être ajoutés au besoin
             modules(appModule + dataModule)
         }
     }

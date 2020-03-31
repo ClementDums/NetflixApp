@@ -1,8 +1,5 @@
 package com.gmail.eamosse.imdb.ui.home
 
-import android.view.View
-import android.widget.ProgressBar
-import android.widget.Toast
 import com.gmail.eamosse.idbdata.data.Category
 import com.gmail.eamosse.idbdata.data.Movie
 import com.gmail.eamosse.idbdata.data.Token
@@ -10,10 +7,7 @@ import com.gmail.eamosse.idbdata.repository.MovieRepository
 import com.gmail.eamosse.idbdata.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.lifecycle.*
-import kotlinx.coroutines.delay
-
 
 class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
 
@@ -49,7 +43,7 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
         _mutableShowShimmer.value = true
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getToken()) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _token.postValue(result.data)
                     stopShimmer()
                 }
@@ -63,7 +57,7 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
     fun getCategories() {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getCategories()) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _categories.postValue(result.data)
                 }
                 is Result.Error -> {
@@ -77,7 +71,7 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
         _showProgressBar.value = true
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getDiscover(genre_id, pageNumber)) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     discoversArray = discoversArray + result.data
                     _discovers.postValue(discoversArray)
 
