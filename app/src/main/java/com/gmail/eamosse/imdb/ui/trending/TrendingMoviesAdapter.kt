@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.trending
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -18,8 +18,9 @@ class TrendingMoviesAdapter(private val items: List<Movie>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: TrendingMovieItemBinding = TrendingMovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ViewHolder(binding)
+        val binding: TrendingMovieItemBinding =
+            TrendingMovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int = items.size

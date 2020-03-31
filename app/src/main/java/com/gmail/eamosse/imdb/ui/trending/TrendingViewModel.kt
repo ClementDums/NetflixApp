@@ -13,8 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TrendingViewModel(private val repository: MovieRepository) : ViewModel() {
-
-
     private val _trendingMovies: MutableLiveData<List<Movie>> = MutableLiveData()
     val trendingMovies: LiveData<List<Movie>>
         get() = _trendingMovies
@@ -37,24 +35,24 @@ class TrendingViewModel(private val repository: MovieRepository) : ViewModel() {
         loadTrendingCategories()
     }
 
+    private fun loadTrendingMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = repository.getTrendingMovies()) {
+                is Result.Success -> {
+                    println("EEE ${result.data}")
+                    _trendingMovies.postValue(result.data)
+                }
+                is Result.Error -> {
+                    _error.postValue(result.message)
+                }
+            }
+        }
+    }
 
-  fun loadTrendingMovies(){
-      viewModelScope.launch(Dispatchers.IO) {
-          when (val result = repository.getTrendingMovies()) {
-              is Result.Succes -> {
-                  println("EEE ${result.data}")
-                  _trendingMovies.postValue(result.data)
-              }
-              is Result.Error -> {
-                  _error.postValue(result.message)
-              }
-          }
-      }
-  }
-    fun loadTrendingPeople(){
+    private fun loadTrendingPeople() {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getTrendingPeople()) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _trendingPeople.postValue(result.data)
                     println("EEE ${result.data}")
                 }
@@ -68,10 +66,10 @@ class TrendingViewModel(private val repository: MovieRepository) : ViewModel() {
     }
 
 
-    fun loadTrendingCategories(){
+    private fun loadTrendingCategories() {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getCategories()) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _categories.postValue(result.data)
                 }
                 is Result.Error -> {

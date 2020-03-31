@@ -6,7 +6,7 @@ import java.io.IOException
 internal fun <T : Any> Response<T>.parse(): Result<T> {
     return if (isSuccessful) {
         body()?.let {
-            Result.Succes(it)
+            Result.Success(it)
         } ?: run {
             Result.Error(
                 exception = NoDataException(),

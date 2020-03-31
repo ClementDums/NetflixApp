@@ -1,7 +1,5 @@
 package com.gmail.eamosse.idbdata.api.response
 
-import com.gmail.eamosse.idbdata.data.Movie
-import com.gmail.eamosse.idbdata.data.ProductionCompany
 import com.gmail.eamosse.idbdata.data.Video
 
 internal data class VideosMovieResponse(

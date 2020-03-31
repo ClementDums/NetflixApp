@@ -27,11 +27,11 @@ class MovieRepository : KoinComponent {
      */
     suspend fun getToken(): Result<Token> {
         return when (val result = online.getToken()) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 //save the response in the local database
                 local.saveToken(result.data.toEntity())
                 //return the response
-                Result.Succes(result.data.toToken())
+                Result.Success(result.data.toToken())
             }
             is Result.Error -> result
 
@@ -41,13 +41,13 @@ class MovieRepository : KoinComponent {
     suspend fun getCategories(): Result<List<Category>> {
 
         return when (val result = online.getCategories()) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 // On utilise la fonction map pour convertir les catégories de la réponse serveur
                 // en liste de categories d'objets de l'application
                 val categories = result.data.map {
                     it.toCategory()
                 }
-                Result.Succes(categories)
+                Result.Success(categories)
             }
             is Result.Error -> result
         }
@@ -56,14 +56,14 @@ class MovieRepository : KoinComponent {
     suspend fun getDiscover(genre_id: Int, pageNumber: Int): Result<List<Movie>> {
 
         return when (val result = online.getDiscover(genre_id, pageNumber)) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 // On utilise la fonction map pour convertir les catégories de la réponse serveur
                 // en liste de categories d'objets de l'application
                 val movies = result.data.map {
                     println(it)
                     it.toMovie()
                 }
-                Result.Succes(movies)
+                Result.Success(movies)
             }
             is Result.Error -> result
         }
@@ -72,13 +72,13 @@ class MovieRepository : KoinComponent {
     suspend fun getTrendingMovies(): Result<List<Movie>> {
 
         return when (val result = online.getTrendingMovies()) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 // On utilise la fonction map pour convertir les catégories de la réponse serveur
                 // en liste de categories d'objets de l'application
                 val movies = result.data.map {
                     it.toTrending()
                 }
-                Result.Succes(movies)
+                Result.Success(movies)
             }
             is Result.Error -> result
         }
@@ -87,13 +87,13 @@ class MovieRepository : KoinComponent {
     suspend fun getTrendingPeople(): Result<List<Person>> {
 
         return when (val result = online.getTrendingPeople()) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 // On utilise la fonction map pour convertir les catégories de la réponse serveur
                 // en liste de categories d'objets de l'application
                 val people = result.data.map {
                     it.toPerson()
                 }
-                Result.Succes(people)
+                Result.Success(people)
             }
             is Result.Error -> result
         }
@@ -102,9 +102,9 @@ class MovieRepository : KoinComponent {
     suspend fun getMovieDetails(movie_id: Int): Result<Movie> {
 
         return when (val result = online.getMovieDetails(movie_id)) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 val movie = result.data.toMovie()
-                Result.Succes(movie)
+                Result.Success(movie)
             }
             is Result.Error -> result
         }
@@ -113,11 +113,11 @@ class MovieRepository : KoinComponent {
     suspend fun getMovieVideos(movie_id: Int): Result<List<Video>> {
 
         return when (val result = online.getMovieVideos(movie_id)) {
-            is Result.Succes -> {
+            is Result.Success -> {
                 val videos = result.data.map {
                     it.toVideo()
                 }
-                Result.Succes(videos)
+                Result.Success(videos)
 
             }
             is Result.Error -> result

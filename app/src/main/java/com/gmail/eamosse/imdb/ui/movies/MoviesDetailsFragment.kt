@@ -1,6 +1,5 @@
 package com.gmail.eamosse.imdb.ui.movies
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +8,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.idbdata.data.Movie
-import com.gmail.eamosse.idbdata.data.Video
-import com.gmail.eamosse.imdb.BR
 import com.gmail.eamosse.imdb.databinding.FragmentMoviesDetailBinding
-import com.gmail.eamosse.imdb.ui.home.CategoryAdapter
-import com.gmail.eamosse.imdb.ui.home.HomeFragmentDirections
-import com.gmail.eamosse.imdb.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesDetailsFragment : Fragment() {

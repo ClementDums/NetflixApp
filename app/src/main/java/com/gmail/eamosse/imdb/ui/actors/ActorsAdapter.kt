@@ -1,20 +1,16 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.actors
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.eamosse.idbdata.data.Category
-import com.gmail.eamosse.imdb.databinding.CategoryListItemBinding
+import com.gmail.eamosse.idbdata.data.Actor
+import com.gmail.eamosse.imdb.databinding.ActorsListItemBinding
 
-class CategoryAdapter(
-    private val items: List<Category>,
-    private val onClick: (category: Category) -> Unit
-) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
-
-    inner class ViewHolder(private val binding: CategoryListItemBinding) :
+class ActorsAdapter(private val items: List<Actor>, private val onClick: (actor: Actor) -> Unit) :
+    RecyclerView.Adapter<ActorsAdapter.ViewHolder>() {
+    inner class ViewHolder(private val binding: ActorsListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Category) {
+        fun bind(item: Actor) {
             binding.item = item
             binding.root.setOnClickListener {
                 onClick(item)
@@ -24,8 +20,7 @@ class CategoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(CategoryListItemBinding.inflate(inflater, parent, false))
-    }
+        return ViewHolder(ActorsListItemBinding.inflate(inflater, parent, false))    }
 
     override fun getItemCount(): Int = items.size
 

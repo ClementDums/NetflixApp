@@ -3,10 +3,8 @@ package com.gmail.eamosse.imdb.ui.movies
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.eamosse.idbdata.data.Movie
 import com.gmail.eamosse.idbdata.data.ProductionCompany
 import com.gmail.eamosse.imdb.databinding.ProductionCompaniesItemBinding
-import com.gmail.eamosse.imdb.databinding.TrendingMovieItemBinding
 
 
 class ProductionCompaniesAdapter(private val items: List<ProductionCompany>) :
@@ -20,7 +18,11 @@ class ProductionCompaniesAdapter(private val items: List<ProductionCompany>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ProductionCompaniesItemBinding = ProductionCompaniesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ProductionCompaniesItemBinding = ProductionCompaniesItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 

@@ -42,7 +42,7 @@
         android:id="@+id/navigation_movies_list_fragment"
         android:name="com.gmail.eamosse.imdb.ui.movies.MoviesListFragment"
         android:label="@string/title_movies"
-        tools:layout="@layout/fragment_movies_list" >
+        tools:layout="@layout/fragment_movies_list">
         <argument
             android:name="category"
             app:argType="integer" />
@@ -55,9 +55,31 @@
         android:id="@+id/navigation_movies_detail_fragment"
         android:name="com.gmail.eamosse.imdb.ui.movies.MoviesDetailsFragment"
         android:label="@string/title_movies"
-        tools:layout="@layout/fragment_movies_detail" >
+        tools:layout="@layout/fragment_movies_detail">
         <argument
             android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_list_actors"
+        android:name="com.gmail.eamosse.imdb.ui.actors.ActorsListFragment"
+        android:label="@string/title_actors"
+        tools:layout="@layout/fragment_actors">
+        <action
+            android:id="@+id/action_navigation_actors_list_fragment_to_navigation_actors_detail_fragment"
+            app:destination="@+id/navigation_details_actors" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_details_actors"
+        android:name="com.gmail.eamosse.imdb.ui.actors.ActorsDetailsFragment"
+        android:label="@string/title_actors"
+        tools:layout="@layout/fragment_actors">
+
+
+        <argument
+            android:name="actorId"
             app:argType="integer" />
     </fragment>
 

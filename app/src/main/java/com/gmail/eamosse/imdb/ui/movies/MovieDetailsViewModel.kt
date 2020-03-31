@@ -29,7 +29,7 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
     fun getMovieDetails(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getMovieDetails(movieId)) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _movieDetails.postValue(result.data)
                 }
                 is Result.Error -> {
@@ -42,11 +42,10 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
     fun getMovieVideos(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getMovieVideos(movieId)) {
-                is Result.Succes -> {
+                is Result.Success -> {
                     _movieVideos.postValue(result.data)
                 }
                 is Result.Error -> {
-
                     _error.postValue(result.message)
                 }
             }
