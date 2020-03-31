@@ -10,10 +10,6 @@ import com.gmail.eamosse.idbdata.repository.MovieRepository
 import com.gmail.eamosse.idbdata.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.net.Uri
 
 
 class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel(){
@@ -48,12 +44,15 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
 
     fun getSession(){
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getSession(token.value!!.requestToken)) {
+            println("EEEE ${token.value.toString()}")
+            when (val result = repository.getSession(token.value.toString())) {
                 is Result.Succes -> {
-                   println("EEEE ${result.data.sessionId}")
+                   println("EEEEOK ${result.data}")
                 }
                 is Result.Error -> {
                     _error.postValue(result.message)
+                    println("EEEEERR ${result.message}")
+
                 }
             }
         }

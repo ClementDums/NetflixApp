@@ -9,6 +9,7 @@ import com.gmail.eamosse.idbdata.api.service.MovieService
 import com.gmail.eamosse.idbdata.utils.Result
 import com.gmail.eamosse.idbdata.utils.parse
 import com.gmail.eamosse.idbdata.utils.safeCall
+import com.google.gson.Gson
 import retrofit2.Response
 
 /**

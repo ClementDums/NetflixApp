@@ -7,4 +7,9 @@ package com.gmail.eamosse.idbdata.data
 class Token(
     val expiresAt: String,
     val requestToken: String
-)
+){
+    override fun toString(): String {
+        return "request_token: $requestToken"
+
+    }
+}

@@ -22,11 +22,12 @@ import com.gmail.eamosse.imdb.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_movies_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoviesDetailsFragment: Fragment(){
+class MoviesDetailsFragment : Fragment() {
     private val viewModel: MovieDetailsViewModel by viewModel()
-    private lateinit var binding:FragmentMoviesDetailBinding
-    val args:MoviesDetailsFragmentArgs by navArgs()
-    lateinit var movie:Movie
+    private lateinit var binding: FragmentMoviesDetailBinding
+    val args: MoviesDetailsFragmentArgs by navArgs()
+    lateinit var movie: Movie
+    var hasAuthorization = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,14 +40,20 @@ class MoviesDetailsFragment: Fragment(){
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (hasAuthorization) {
+            viewModel.getSession()
+        }
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         with(viewModel) {
             getMovieDetails(args.movie)
             token.observe(viewLifecycleOwner, Observer {
                 askPermission(it.requestToken)
-                viewModel.getSession()
             })
 
             movieDetails.observe(viewLifecycleOwner, Observer {
@@ -67,10 +74,11 @@ class MoviesDetailsFragment: Fragment(){
         }
     }
 
-    fun askPermission(token: String){
+    fun askPermission(token: String) {
         val url = "https://www.themoviedb.org/authenticate/$token"
         val i = Intent(Intent.ACTION_VIEW)
         i.data = Uri.parse(url)
+        hasAuthorization = true
         startActivity(i)
     }
 }
