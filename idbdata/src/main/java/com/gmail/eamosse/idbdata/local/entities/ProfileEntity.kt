@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
  * Modélise les tokens dans la base de données
  */
 @Entity(
-    tableName = "movies"
+    tableName = "idb_user"
 )
-internal data class MovieEntity(
+internal data class ProfileEntity(
     @PrimaryKey
-    val id: Int,
+    val movie_id: Int,
     val isLiked: Boolean,
     val isFavorite: Boolean
 )

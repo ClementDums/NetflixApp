@@ -8,6 +8,9 @@ import com.gmail.eamosse.idbdata.api.response.toTrending
 import com.gmail.eamosse.idbdata.data.*
 import com.gmail.eamosse.idbdata.datasources.LocalDataSource
 import com.gmail.eamosse.idbdata.datasources.OnlineDataSource
+import com.gmail.eamosse.idbdata.local.entities.MovieEntity
+import com.gmail.eamosse.idbdata.local.entities.ProfileEntity
+import com.gmail.eamosse.idbdata.local.entities.toMovie
 import com.gmail.eamosse.idbdata.utils.Result
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -18,6 +21,7 @@ import org.koin.core.inject
 class MovieRepository : KoinComponent {
     //Gestion des sources de données locales
     private val local: LocalDataSource by inject()
+
     //Gestion des sources de données en lignes
     private val online: OnlineDataSource by inject()
 
@@ -122,5 +126,37 @@ class MovieRepository : KoinComponent {
             }
             is Result.Error -> result
         }
+    }
+
+    suspend fun registerMovie(movie: Movie) {
+        local.registerMovie(movie.toEntityMovie())
+    }
+
+    suspend fun setLike(movie_id: Int, isLiked: Boolean) {
+        local.likeMovie(movie_id, isLiked)
+    }
+
+    suspend fun setFavorite(movie_id: Int, isFavorite: Boolean) {
+        local.favMovie(movie_id, isFavorite)
+    }
+
+    suspend fun getLiked(): List<Movie> {
+        return local.getLiked().map {
+            it.toMovie()
+        }
+    }
+
+    suspend fun getFavorites(): List<Movie> {
+        return local.getFavorites().map {
+            it.toMovie()
+        }
+    }
+
+    suspend fun isLiked(movie_id: Int): Int {
+        return local.isLiked(movie_id)
+    }
+
+    suspend fun isFavorite(movie_id: Int): Int {
+        return local.isFavorite(movie_id)
     }
 }

@@ -22,6 +22,7 @@ internal fun <T : Any> Response<T>.parse(): Result<T> {
         )
     }
 }
+
 internal suspend fun <T : Any> safeCall(execute: suspend () -> Result<T>): Result<T> {
     return try {
         execute()
@@ -41,5 +42,6 @@ internal suspend fun <T : Any> safeCall(execute: suspend () -> Result<T>): Resul
         }
     }
 }
-class NoDataException: Exception()
-class NetworkException: Exception()
+
+class NoDataException : Exception()
+class NetworkException : Exception()

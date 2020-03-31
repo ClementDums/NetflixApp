@@ -11,12 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.idbdata.data.Movie
 import com.gmail.eamosse.imdb.databinding.FragmentMoviesDetailBinding
+import kotlinx.android.synthetic.main.fragment_movies_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesDetailsFragment : Fragment() {
     private val viewModel: MovieDetailsViewModel by viewModel()
     private lateinit var binding: FragmentMoviesDetailBinding
-    val args: MoviesDetailsFragmentArgs by navArgs()
+    private val args: MoviesDetailsFragmentArgs by navArgs()
     lateinit var movie: Movie
 
     override fun onCreateView(
@@ -31,6 +32,13 @@ class MoviesDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        like.setOnClickListener {
+            viewModel.setLike(movie.id)
+        }
+
+        favorite.setOnClickListener {
+            viewModel.setFavorite(movie.id)
+        }
         with(viewModel) {
             getMovieDetails(args.movieId)
             movieVideos.observe(viewLifecycleOwner, Observer {

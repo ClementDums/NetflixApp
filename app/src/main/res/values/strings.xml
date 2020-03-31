@@ -8,6 +8,8 @@
     <string name="title_home">Home</string>
     <string name="title_trending">Trendings</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_actors">Actors</string>
+    <string name="title_profile">Profile</string>
 
     <string name="home_second">Home Second</string>
     <string name="title_movies">Movies</string>
@@ -16,8 +18,9 @@
     <string name="title_trending_categories">Trending categories</string>
     <string name="production_companies">Production companies</string>
     <string name="trailer">Trailer</string>
-    <string name="title_actors">Actors</string>
     <string name="checkbox_adult">Adult</string>
     <string name="checkbox_series">Series</string>
     <string name="checkbox_movies">Movies</string>
+    <string name="title_favorite">Favorites</string>
+    <string name="title_liked">Liked</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import com.gmail.eamosse.imdb.ui.actors.ActorsViewModel
 import com.gmail.eamosse.imdb.ui.home.HomeViewModel
 import com.gmail.eamosse.imdb.ui.movies.MovieDetailsViewModel
+import com.gmail.eamosse.imdb.ui.profile.ProfileViewModel
 import com.gmail.eamosse.imdb.ui.trending.TrendingViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -34,5 +35,8 @@ val appModule = module {
     }
     viewModel {
         ActorsViewModel(repository = get())
+    }
+    viewModel {
+        ProfileViewModel(repository = get())
     }
 }

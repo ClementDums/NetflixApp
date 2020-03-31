@@ -51,4 +51,18 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
             }
         }
     }
+
+    fun setLike(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val like = repository.isLiked(id) != 1
+            repository.setLike(movie_id = id, isLiked = like)
+        }
+    }
+
+    fun setFavorite(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val favorite = repository.isFavorite(id) != 1
+            repository.setFavorite(movie_id = id, isFavorite = favorite)
+        }
+    }
 }

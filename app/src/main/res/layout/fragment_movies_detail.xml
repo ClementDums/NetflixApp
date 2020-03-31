@@ -18,9 +18,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
             >
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/poster"
                 android:layout_width="wrap_content"
@@ -28,38 +29,35 @@
                 android:layout_marginTop="20dp"
                 android:src="@drawable/ic_launcher_background"
                 app:bindImage="@{item.poster_path}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
                 android:text="@{item.title}"
-                android:layout_marginStart="10dp"
                 android:textSize="30sp"
-                app:layout_constraintTop_toBottomOf="@id/poster"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Titanic"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/poster"
+                tools:text="Titanic" />
 
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.release_date}"
                 android:layout_marginStart="10dp"
+                android:text="@{item.release_date}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title"
-                tools:text="01-12-2020"
-                />
+                tools:text="01-12-2020" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/stars"
@@ -67,132 +65,140 @@
                 android:layout_height="25dp"
                 android:layout_marginStart="20dp"
                 android:src="@drawable/ic_noun_star_burst_3157396"
-                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintEnd_toStartOf="@id/vote_average"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/vote_average"/>
+                app:layout_constraintTop_toBottomOf="@id/date" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vote_average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.vote_average}"
                 android:layout_marginStart="10dp"
+                android:text="@{item.vote_average}"
                 app:layout_constraintStart_toEndOf="@id/stars"
                 app:layout_constraintTop_toBottomOf="@id/date"
-                tools:text="10"
-                />
+                tools:text="10" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/people"
-                android:layout_marginStart="20dp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_noun_people_2718558"
-                app:layout_constraintTop_toBottomOf="@id/stars"
+                app:layout_constraintEnd_toStartOf="@id/vote_count"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/vote_count"/>
+                app:layout_constraintTop_toBottomOf="@id/stars" />
 
             <TextView
                 android:id="@+id/vote_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:text="@{item.vote_count}"
-                android:layout_marginStart="10dp"
                 app:layout_constraintStart_toEndOf="@id/people"
                 app:layout_constraintTop_toBottomOf="@id/vote_average"
-                tools:text="500"
-                />
+                tools:text="500" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/movie_overview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/vote_count"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="@{item.overview}"
-                    />
+            <Button
+                android:id="@+id/like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="like"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/vote_average" />
+
+            <Button
+                android:id="@+id/favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorite"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/like" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/movie_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@{item.overview}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vote_count" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/movie_popularity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/movie_overview"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="@{`Popularity: ` + item.popularity}"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_overview" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/trailer"
-                android:layout_marginTop="20dp"
-                android:textSize="21sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/movie_popularity"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/trailer"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toTopOf="@id/trailer_video"
-                android:text="@string/trailer"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_popularity" />
 
             <WebView
-                android:layout_width="match_parent"
                 android:id="@+id/trailer_video"
-                app:layout_constraintTop_toBottomOf="@id/trailer"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
                 app:layout_constraintBottom_toTopOf="@id/companies_title"
-                android:layout_height="180dp"></WebView>
+                app:layout_constraintTop_toBottomOf="@id/trailer"></WebView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/companies_title"
-                android:layout_marginTop="20dp"
-                android:textSize="21sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/trailer_video"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/production_companies"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toTopOf="@id/companies_recycler"
-                android:text="@string/production_companies"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trailer_video" />
 
 
-
-
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/trailer_path"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:textSize="21sp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/movie_popularity"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/companies_recycler"-->
-<!--                android:text="@{item.videos[0].key}"/>-->
-
-
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/trailer_path"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:textSize="21sp"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/movie_popularity"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintBottom_toTopOf="@id/companies_recycler"-->
+            <!--                android:text="@{item.videos[0].key}"/>-->
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/companies_recycler"
-                tools:listitem="@layout/production_companies_item"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/companies_title"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
+                app:layout_constraintTop_toBottomOf="@id/companies_title"
+                tools:listitem="@layout/production_companies_item" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
