@@ -33,11 +33,11 @@ class MoviesDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         like.setOnClickListener {
-            viewModel.setLike(movie.id)
+            viewModel.setLike(movie)
         }
 
         favorite.setOnClickListener {
-            viewModel.setFavorite(movie.id)
+            viewModel.setFavorite(movie)
         }
         with(viewModel) {
             getMovieDetails(args.movieId)

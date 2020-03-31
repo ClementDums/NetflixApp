@@ -52,17 +52,19 @@ class MovieDetailsViewModel(private val repository: MovieRepository) : ViewModel
         }
     }
 
-    fun setLike(id: Int) {
+    fun setLike(movie: Movie) {
         viewModelScope.launch(Dispatchers.IO) {
-            val like = repository.isLiked(id) != 1
-            repository.setLike(movie_id = id, isLiked = like)
+            val like = repository.isLiked(movie.id) != 1
+            repository.registerMovie(movie = movie)
+            repository.setLike(movie_id = movie.id, isLiked = like)
         }
     }
 
-    fun setFavorite(id: Int) {
+    fun setFavorite(movie: Movie) {
         viewModelScope.launch(Dispatchers.IO) {
-            val favorite = repository.isFavorite(id) != 1
-            repository.setFavorite(movie_id = id, isFavorite = favorite)
+            val favorite = repository.isFavorite(movie.id) != 1
+            repository.registerMovie(movie = movie)
+            repository.setFavorite(movie_id = movie.id, isFavorite = favorite)
         }
     }
 }
